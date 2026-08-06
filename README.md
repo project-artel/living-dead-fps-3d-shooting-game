@@ -3,7 +3,10 @@
 
 <a href="https://aayush21.itch.io/living-dead">
 
-  <img src="https://capsule-render.vercel.app/api?type=transparent&fontColor=8B0000&text=🧟‍♂️%20LIVING%20DEAD&fontSize=60&height=100&animation=twinkle&fontAlignY=50" alt="LIVING DEAD Text"/>
+<!--
+  <img src="https://capsule-render.vercel.app/api?type=transparent&fontColor=8B0000&text=🧟‍♂️%20LIVING%20DEAD&fontSize=60&height=100&animation=twinkle&fontAlignY=50" alt="LIVING DEAD"/>
+  -->
+  <img src=".github/assets/living-dead-title.svg" alt="LIVING DEAD">
   
 </a>
 
@@ -54,15 +57,11 @@
 
 ## 🎬 Gameplay
 
-Click the preview below to watch full gameplay action:
-
 <div align="center">
 
-<a href="https://www.youtube.com/watch?v=Xocj5toyDDg">
-  <img src="https://github.com/user-attachments/assets/05b6b238-cd27-4d89-9b71-78bd6ccfbe93" width="500" alt="Living Dead Gameplay Video">
-  <br/>
-  <img src="https://img.shields.io/badge/▶️%20Watch%20on-YouTube-red?style=for-the-badge&logo=youtube" alt="Play Video">
-</a>
+  <img src=".github/assets/gameplay.gif" width="500" alt="Living Dead Gameplay Video">
+  
+  <a href="https://www.youtube.com/watch?v=Xocj5toyDDg"><img src="https://cdn.simpleicons.org/youtube/FF0000" width="45" align="middle" alt="YouTube logo"></a><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="12" height="1" align="middle"><!-- 2. Clickable Text --> <a href="https://www.youtube.com/watch?v=Xocj5toyDDg"><strong>GAMEPLAY TRAILER</strong></a>
 
 </div>
 
@@ -97,8 +96,9 @@ Click the preview below to watch full gameplay action:
 
 **In-Game Interface**
 <br/>
-<img src="https://user-images.githubusercontent.com/101112022/176938001-c9e42eff-36e1-4610-9cbf-07ea78ed54f9.png" width="500">
-
+<!-- <img src="https://user-images.githubusercontent.com/101112022/176938001-c9e42eff-36e1-4610-9cbf-07ea78ed54f9.png" width="500"> -->
+  <img src=".github/assets/game_interface.gif" width="500" alt="Game Interface">
+<br/><br/>
 </div>
 
 - **Player HP Bar:** Bottom right corner
@@ -177,6 +177,27 @@ Immersive 3D positional and dynamic audio for every gameplay event: gunshots, gr
 | **Reload Ammo** | `R` (Near Ammo Box) |
 | **Recharge Health** | `Caps Lock` (Near Medikit) |
 | **Throw Grenade** | `G` |
+
+---
+
+## 🎨 Assets, Effects & Attribution
+
+Living Dead was developed using a combination of:
+
+- Custom gameplay systems and mechanics implemented in C#
+- Custom particle-effect setups and visual tuning
+- Custom animation integration and animation controller configuration
+- Unity Terrain-based level design
+- Third-party game assets sourced from publicly available asset repositories and creator marketplaces
+- Freely available community assets used for prototyping, environment design, and character modeling
+
+### Attribution Notice
+
+Due to the age of the project and the number of integrated assets, the original source of every individual asset may no longer be available.
+
+If you are the creator of an asset used in this project and would like specific attribution, please open an issue and I will gladly update the credits.
+
+This project demonstrates the design and implementation of core game-development systems including AI behavior, combat mechanics, animation workflows, player interactions, and real-time gameplay systems built with Unity and C#.
 
 ---
 
