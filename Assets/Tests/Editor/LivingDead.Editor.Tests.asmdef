@@ -1,0 +1,6 @@
+{
+  "name": "LivingDead.Editor.Tests",
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "defineConstraints": ["ARTEL_GAME_FUNCTIONS"]
+}

@@ -30,42 +30,92 @@ internal static class LivingDeadNavigationBehaviors
         return Aim(Object.FindAnyObjectByType<CameraLook>(), AimCollider(Resolve(target), aimPoint), context);
     }
 
-    [ArtelBehavior("현재 씬의 ARTEL 셀렉터로 지정한 물체까지 걸어갑니다.",
-        group: "movement", when: nameof(CanControl))]
-    private static IEnumerator MoveToTarget(string target, [CheatRange(0.5f, 5f)] float stopDistance,
-        ArtelBehaviorContext context)
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    [ArtelCheat("지정한 대상의 distance 이내에 있는 바닥의 빈 위치로 순간이동합니다. 이동 시험에는 사용하지 않습니다.",
+        when: nameof(CanControl))]
+    private static string TeleportToTarget(string target, [CheatRange(0.5f, 2f)] float distance)
     {
         var destination = Resolve(target);
         var character = Object.FindAnyObjectByType<Character>();
-        var scene = SceneManager.GetActiveScene();
-        var deadline = Time.unscaledTime + 12f;
-        try
-        {
-            while (destination && destination.gameObject.activeInHierarchy && character
-                && SceneManager.GetActiveScene() == scene && character.QaControlsAvailable
-                && Time.unscaledTime < deadline)
-            {
-                var delta = destination.position - character.transform.position;
-                if (delta.sqrMagnitude <= stopDistance * stopDistance)
-                {
-                    context.Complete($"도착했습니다. distance={delta.magnitude:F2}");
-                    yield break;
-                }
+        if (!destination || !destination.gameObject.activeInHierarchy || destination.IsChildOf(character.transform))
+            throw new System.InvalidOperationException("현재 씬에서 플레이어 이외의 활성 대상을 지정하세요.");
 
-                var local = character.transform.InverseTransformDirection(delta);
-                character.QaMovement = Vector2.ClampMagnitude(new Vector2(local.x, local.z), 1f);
-                yield return null;
-            }
+        var body = character.GetComponent<Rigidbody>();
+        var capsule = character.GetComponent<CapsuleCollider>();
+        if (!body || !capsule || body.isKinematic)
+            throw new System.InvalidOperationException("이동 가능한 플레이어 Rigidbody와 CapsuleCollider가 필요합니다.");
 
-            context.Fail(!destination ? "대상을 찾을 수 없습니다."
-                : "지정 거리 안에 도착하지 못했습니다. 경로와 조작 상태를 확인하세요.");
-        }
-        finally
-        {
-            if (character)
-                character.QaMovement = Vector2.zero;
-        }
+        Physics.SyncTransforms();
+        if (!TryFindLanding(character.transform, capsule, destination, distance, out var landing))
+            throw new System.InvalidOperationException("지정 거리 안에 바닥과 충분한 빈 공간을 찾지 못했습니다. 위치는 변경하지 않았습니다.");
+
+        body.position = landing;
+        character.transform.position = landing;
+        body.velocity = Vector3.zero;
+        body.angularVelocity = Vector3.zero;
+        Physics.SyncTransforms();
+        return $"teleported=true, target={target}, distance={Vector3.Distance(landing, destination.position):F2}";
     }
+
+    private static bool TryFindLanding(Transform player, CapsuleCollider capsule, Transform destination,
+        float distance, out Vector3 landing)
+    {
+        landing = player.position;
+        if (capsule.direction != 1 || Vector3.Dot(player.up, Vector3.up) < 0.999f)
+            return false;
+
+        var scale = player.lossyScale;
+        float radius = capsule.radius * Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.z));
+        float halfHeight = Mathf.Max(capsule.height * Mathf.Abs(scale.y) * 0.5f, radius);
+        var centerOffset = player.TransformVector(capsule.center);
+        var towardPlayer = Vector3.ProjectOnPlane(player.position - destination.position, Vector3.up).normalized;
+        if (towardPlayer.sqrMagnitude < 0.01f)
+            towardPlayer = Vector3.ProjectOnPlane(destination.forward, Vector3.up).normalized;
+        if (towardPlayer.sqrMagnitude < 0.01f)
+            towardPlayer = Vector3.forward;
+
+        for (int ring = 0; ring < 3; ring++)
+        {
+            for (int side = 0; side < 8; side++)
+            {
+                var direction = Quaternion.AngleAxis(side * 45f, Vector3.up) * towardPlayer;
+                var probe = destination.position + direction * distance * (1f - ring * 0.25f);
+                var hits = Physics.RaycastAll(probe + Vector3.up * 5f, Vector3.down, 10f,
+                    Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+                System.Array.Sort(hits, (left, right) => left.distance.CompareTo(right.distance));
+                foreach (var hit in hits)
+                {
+                    if (hit.collider.transform.IsChildOf(player) || hit.collider.transform.IsChildOf(destination)
+                        || hit.normal.y < 0.7f)
+                        continue;
+
+                    var candidate = hit.point + Vector3.up * (halfHeight + 0.05f) - centerOffset;
+                    if (Vector3.Distance(candidate, destination.position) > distance)
+                        continue;
+
+                    var center = candidate + centerOffset;
+                    var extent = Vector3.up * (halfHeight - radius);
+                    bool blocked = false;
+                    foreach (var obstacle in Physics.OverlapCapsule(center - extent, center + extent, radius,
+                        Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+                    {
+                        if (!obstacle.transform.IsChildOf(player))
+                        {
+                            blocked = true;
+                            break;
+                        }
+                    }
+                    if (blocked)
+                        continue;
+
+                    landing = candidate;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+#endif
 
     private static IEnumerator Aim(CameraLook look, Collider target, ArtelBehaviorContext context)
     {

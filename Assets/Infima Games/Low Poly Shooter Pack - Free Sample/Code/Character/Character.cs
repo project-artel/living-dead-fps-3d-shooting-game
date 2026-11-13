@@ -268,14 +268,7 @@ namespace InfimaGames.LowPolyShooterPack
 		
 		public override bool IsTutorialTextVisible() => tutorialTextVisible;
 		
-		#if ARTEL_GAME_FUNCTIONS
-		internal Vector2 QaMovement { get; set; }
-
-		public override Vector2 GetInputMovement() =>
-			QaControlsAvailable && axisMovement == Vector2.zero ? QaMovement : axisMovement;
-#else
 		public override Vector2 GetInputMovement() => axisMovement;
-#endif
 		public override Vector2 GetInputLook() => axisLook;
 
 		#endregion
