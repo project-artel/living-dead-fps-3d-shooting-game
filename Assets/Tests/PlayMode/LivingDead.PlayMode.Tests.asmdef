@@ -1,0 +1,1 @@
+{"name":"LivingDead.PlayMode.Tests","references":["Unity.InputSystem"],"optionalUnityReferences":["TestAssemblies"],"defineConstraints":["ARTEL_GAME_FUNCTIONS"]}
