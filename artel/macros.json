@@ -1,0 +1,176 @@
+{
+  "project_id": "PRJ-2384W8",
+  "game_build_id": "BLD-0NX0W1",
+  "upsert": [
+    {
+      "name": "open_mode_selection",
+      "source": "def open_mode_selection() -> None:\n    \"\"\"메인 메뉴에서 모드 선택을 엽니다. Normal/Zombie 선택 버튼이 조작 가능해지면 완료합니다.\"\"\"\n    click(selector(\"Canvas/Main menu/Play button\"))\n\ndef ready_open_mode_selection() -> bool:\n    return actionable(selector(\"Canvas/Main menu/Play button\"))\n\ndef effect_open_mode_selection() -> bool:\n    return actionable(selector(\"Canvas/mode menu/back_3\"))\n",
+      "contract": {
+        "params": {},
+        "effect": {
+          "mode": "transition",
+          "within": 5
+        }
+      }
+    },
+    {
+      "name": "start_normal_mode",
+      "source": "def start_normal_mode() -> None:\n    \"\"\"모드 선택 화면에서 Normal 전투를 시작합니다. Map_v2에 도착하면 완료하며 로더 동안 기다립니다.\"\"\"\n    click(selector(\"Canvas/mode menu/back_3\"))\n\ndef ready_start_normal_mode() -> bool:\n    return actionable(selector(\"Canvas/mode menu/back_3\"))\n\ndef effect_start_normal_mode() -> bool:\n    return scene() == \"Map_v2\"\n",
+      "contract": {
+        "params": {},
+        "effect": {
+          "mode": "transition",
+          "within": 60
+        }
+      }
+    },
+    {
+      "name": "start_zombie_mode",
+      "source": "def start_zombie_mode() -> None:\n    \"\"\"모드 선택 화면에서 Zombie 전투를 시작합니다. zombie_level에 도착하면 완료하며 로더 동안 기다립니다.\"\"\"\n    click(selector(\"Canvas/mode menu/back_2\"))\n\ndef ready_start_zombie_mode() -> bool:\n    return actionable(selector(\"Canvas/mode menu/back_2\"))\n\ndef effect_start_zombie_mode() -> bool:\n    return scene() == \"zombie_level\"\n",
+      "contract": {
+        "params": {},
+        "effect": {
+          "mode": "transition",
+          "within": 60
+        }
+      }
+    },
+    {
+      "name": "replay_normal_mode",
+      "source": "def replay_normal_mode() -> None:\n    \"\"\"Normal Game Over에서 Replay를 누릅니다. 새 Map_v2에 도착하면 완료합니다.\"\"\"\n    click(selector(\"Canvas/Main menu/REPLAY\"))\n\ndef ready_replay_normal_mode() -> bool:\n    return scene() == \"game over\"\n\ndef effect_replay_normal_mode() -> bool:\n    return scene() == \"Map_v2\"\n",
+      "contract": {
+        "params": {},
+        "effect": {
+          "mode": "transition",
+          "within": 60
+        }
+      }
+    },
+    {
+      "name": "pause_battle",
+      "source": "def pause_battle(pause: object) -> None:\n    \"\"\"전투 중 ESC로 일시정지합니다. gamepaused가 켜지면 완료하며 시간 정지는 TC에서 별도 비교합니다.\"\"\"\n    press_key(\"Escape\", 0.1)\n\ndef ready_pause_battle(pause: object) -> bool:\n    return member(pause, \"pause_menu_script.gamepaused\") == False\n\ndef effect_pause_battle(pause: object) -> bool:\n    return member(pause, \"pause_menu_script.gamepaused\") == True\n",
+      "contract": {
+        "params": {
+          "pause": {
+            "holds": "pause_menu_script::gamepaused"
+          }
+        },
+        "effect": {
+          "mode": "transition",
+          "within": 5
+        }
+      }
+    },
+    {
+      "name": "resume_battle",
+      "source": "def resume_battle(pause: object) -> None:\n    \"\"\"일시정지 상태에서 ESC로 전투를 재개합니다. gamepaused가 꺼지면 완료하며 시간 재개는 TC에서 비교합니다.\"\"\"\n    press_key(\"Escape\", 0.1)\n\ndef ready_resume_battle(pause: object) -> bool:\n    return member(pause, \"pause_menu_script.gamepaused\") == True\n\ndef effect_resume_battle(pause: object) -> bool:\n    return member(pause, \"pause_menu_script.gamepaused\") == False\n",
+      "contract": {
+        "params": {
+          "pause": {
+            "holds": "pause_menu_script::gamepaused"
+          }
+        },
+        "effect": {
+          "mode": "transition",
+          "within": 5
+        }
+      }
+    },
+    {
+      "name": "move_forward",
+      "source": "def move_forward(character: object) -> None:\n    \"\"\"전투 중 앞으로 1초 이동 입력을 보냅니다. 이동 결과는 고정 지형이나 플레이어 위치를 비교합니다.\"\"\"\n    press_key(\"W\", 1.0)\n\ndef ready_move_forward(character: object) -> bool:\n    if scene() == \"Map_v2\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    if scene() == \"zombie_level\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    return False\n",
+      "contract": {
+        "params": {
+          "character": {
+            "holds": "InfimaGames.LowPolyShooterPack.Character::cursorLocked"
+          }
+        },
+        "effect": {
+          "mode": "unobservable",
+          "within": 5,
+          "reason": "위치 변화는 매크로의 스칼라 관찰값으로 확정하지 않고 TC의 전후 위치 증거로 판정합니다."
+        }
+      }
+    },
+    {
+      "name": "fire_once",
+      "source": "def fire_once(character: object) -> None:\n    \"\"\"전투 중 마우스 왼쪽 버튼을 한 번 눌렀다 뗍니다. 단발 무기를 준비하고 잔탄 감소는 TC에서 비교합니다.\"\"\"\n    hold_mouse_button(0)\n    release_mouse_button(0)\n\ndef ready_fire_once(character: object) -> bool:\n    if scene() == \"Map_v2\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    if scene() == \"zombie_level\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    return False\n",
+      "contract": {
+        "params": {
+          "character": {
+            "holds": "InfimaGames.LowPolyShooterPack.Character::cursorLocked"
+          }
+        },
+        "effect": {
+          "mode": "unobservable",
+          "within": 5,
+          "reason": "현재 무기와 발사 전 잔탄 기준값을 TC가 기록해야 하므로 입력 전달만으로 발사 성공을 확정하지 않습니다."
+        }
+      }
+    },
+    {
+      "name": "switch_weapon",
+      "source": "def switch_weapon(character: object) -> None:\n    \"\"\"전투 중 Q로 다음 무기 전환을 요청합니다. 전환 완료 후 모델과 HUD를 TC에서 비교합니다.\"\"\"\n    press_key(\"Q\", 0.1)\n\ndef ready_switch_weapon(character: object) -> bool:\n    if scene() == \"Map_v2\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    if scene() == \"zombie_level\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    return False\n",
+      "contract": {
+        "params": {
+          "character": {
+            "holds": "InfimaGames.LowPolyShooterPack.Character::cursorLocked"
+          }
+        },
+        "effect": {
+          "mode": "unobservable",
+          "within": 5,
+          "reason": "이전 장착 무기와의 비교가 필요하며 입력 전달이 무기 전환 성공을 뜻하지 않습니다."
+        }
+      }
+    },
+    {
+      "name": "press_reload",
+      "source": "def press_reload(character: object) -> None:\n    \"\"\"전투 중 R을 한 번 누릅니다. 탄약 상자 거리와 잔탄에 따른 재장전 또는 거부 결과를 TC에서 판정합니다.\"\"\"\n    press_key(\"R\", 0.1)\n\ndef ready_press_reload(character: object) -> bool:\n    if scene() == \"Map_v2\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    if scene() == \"zombie_level\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    return False\n",
+      "contract": {
+        "params": {
+          "character": {
+            "holds": "InfimaGames.LowPolyShooterPack.Character::cursorLocked"
+          }
+        },
+        "effect": {
+          "mode": "unobservable",
+          "within": 5,
+          "reason": "R은 재장전과 수류탄 보충에 함께 연결되므로 선택한 TC의 잔탄 또는 재고 전후 비교가 필요합니다."
+        }
+      }
+    },
+    {
+      "name": "use_medikit",
+      "source": "def use_medikit(character: object) -> None:\n    \"\"\"전투 중 CapsLock을 한 번 누릅니다. 회복 및 거리 제한 결과는 TC에서 체력과 대상 키트를 비교합니다.\"\"\"\n    press_key(\"CapsLock\", 0.1)\n\ndef ready_use_medikit(character: object) -> bool:\n    if scene() == \"Map_v2\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    if scene() == \"zombie_level\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    return False\n",
+      "contract": {
+        "params": {
+          "character": {
+            "holds": "InfimaGames.LowPolyShooterPack.Character::cursorLocked"
+          }
+        },
+        "effect": {
+          "mode": "unobservable",
+          "within": 5,
+          "reason": "최대 체력과 거리 조건에 따라 회복 또는 거부가 올바르므로 TC별 전후 상태로 판정합니다."
+        }
+      }
+    },
+    {
+      "name": "throw_grenade",
+      "source": "def throw_grenade(character: object) -> None:\n    \"\"\"전투 중 G를 한 번 누릅니다. 투척체가 제거된 뒤 수류탄 보유 수 감소는 TC에서 판정합니다.\"\"\"\n    press_key(\"G\", 0.1)\n\ndef ready_throw_grenade(character: object) -> bool:\n    if scene() == \"Map_v2\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    if scene() == \"zombie_level\":\n        return member(character, \"InfimaGames.LowPolyShooterPack.Character.cursorLocked\") == True\n    return False\n",
+      "contract": {
+        "params": {
+          "character": {
+            "holds": "InfimaGames.LowPolyShooterPack.Character::cursorLocked"
+          }
+        },
+        "effect": {
+          "mode": "unobservable",
+          "within": 5,
+          "reason": "순간 투척체와 보유 표식을 구분해야 하므로 입력 전달 시점에 재고 감소를 확정하지 않습니다."
+        }
+      }
+    }
+  ]
+}

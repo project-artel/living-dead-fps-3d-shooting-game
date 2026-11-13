@@ -1,0 +1,150 @@
+{
+  "project_id": "PRJ-2384W8",
+  "game_version": "1.0",
+  "cases": [
+    {
+      "scene": "game",
+      "precondition": "새 실행의 메인 메뉴에서 Normal 선택 버튼이 보인다.",
+      "step": "Normal 버튼을 한 번 클릭한다.",
+      "expected_value": "로더 후 Map_v2 전투에 진입하고 플레이어 시점과 체력·탄약·타이머 HUD가 표시된다.",
+      "kind": "FUNCTION",
+      "arrives_at": "Map_v2"
+    },
+    {
+      "scene": "game",
+      "precondition": "새 실행의 메인 메뉴에서 Zombie 선택 버튼이 보인다.",
+      "step": "Zombie 버튼을 한 번 클릭한다.",
+      "expected_value": "로더 후 zombie_level 전투에 진입하고 플레이어 시점과 전투 HUD가 표시된다.",
+      "kind": "FUNCTION",
+      "arrives_at": "zombie_level"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "Normal 전투의 평탄하고 앞이 트인 안전한 위치. 정지 상태의 플레이어 위치 P0를 기록한다.",
+      "step": "W를 1초 누른 뒤 뗀다.",
+      "expected_value": "같은 플레이어가 바라보는 방향으로 P0에서 이동한다. 화면의 시점 회전이나 흔들림만으로 이동을 확정하지 않는다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "단발 무기임을 확인한다. 잔탄 N≥2, 재장전·전환 완료. 적과 폭발물이 없는 벽을 조준한다.",
+      "step": "마우스 왼쪽 버튼을 짧게 한 번 눌렀다 뗀다.",
+      "expected_value": "같은 무기의 잔탄이 N−1이 된다. 적 피해·총구 이펙트는 판정하지 않는다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "Normal 전투에서 서로 다른 무기 두 개 이상 보유. 현재 장착 무기를 모델·아이콘으로 식별한다.",
+      "step": "Q를 한 번 누른다.",
+      "expected_value": "전환 완료 후 다른 무기가 장착된다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "탄약 상자 2m 이내. 현재 무기의 용량 C와 잔탄 0<N<C를 기록한다.",
+      "step": "R을 한 번 누른다.",
+      "expected_value": "재장전이 끝난 뒤 같은 무기의 잔탄이 C가 된다. 최대 10초 동안 완료 상태를 관찰한다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "탄약 상자 2m 이내. 현재 무기의 잔탄 0과 용량 C를 확인한다. 필요 시 등록된 준비 기능으로 잔탄만 설정한다.",
+      "step": "R을 한 번 누른다.",
+      "expected_value": "빈 탄창 재장전이 완료되어 같은 무기의 잔탄이 C가 된다. 애니메이션 시작만으로 통과시키지 않는다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "0<N<C. 모든 탄약 상자에서 3m 이상 떨어진 위치이며 재장전 가능한 나머지 조건을 충족한다.",
+      "step": "R을 한 번 누른다.",
+      "expected_value": "재장전이 이루어지지 않고 최대 10초 관찰 후에도 같은 무기의 잔탄이 N이다.",
+      "kind": "EXCEPTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "적 피해가 없는 상태. 체력 50을 확인하고 메디킷 2m 이내에 선다. 필요 시 체력 준비 기능만 사용한다.",
+      "step": "CapsLock을 한 번 누른다.",
+      "expected_value": "체력이 100이 되고 체력 바가 가득 찬다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "체력 100. 다른 키트와 혼동하지 않도록 지정한 메디킷 2m 이내에 선다.",
+      "step": "CapsLock을 한 번 누른다.",
+      "expected_value": "체력 100이 유지되고 지정 메디킷이 소비되지 않는다.",
+      "kind": "EXCEPTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "체력 50. 모든 메디킷에서 3m 이상 떨어지고 다른 피해·회복원이 없다.",
+      "step": "CapsLock을 한 번 누른다.",
+      "expected_value": "체력이 50으로 유지되고 메디킷이 소비되지 않는다.",
+      "kind": "EXCEPTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "탄약 상자 2m 이내. 수류탄 수량이 8 미만이며 이전 투척체가 모두 사라지고 수량이 안정됐다.",
+      "step": "R을 한 번 누른다.",
+      "expected_value": "수류탄 HUD가 8/8로 갱신된다. 총 탄창의 재장전은 별도 TC다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "수류탄 8/8. 적과 폭발물이 없고 플레이어가 폭발 범위에서 벗어날 수 있는 안전한 투척 방향을 확보한다.",
+      "step": "G를 짧게 한 번 누른 뒤 뗀다.",
+      "expected_value": "투척체 제거 후 안정된 보유 수량이 7/8이다. 비행 모양이나 순간 수량을 판정하지 않는다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "다른 공격원·폭발물이 개입하지 않는 지정 적 한 개체를 사거리 안에서 조준한다. HUD Kill:K/D를 기록한다.",
+      "step": "실제 마우스 발사로 지정 적을 처치한다.",
+      "expected_value": "지정 적의 사망·제거 증거와 함께 HUD가 Kill:K+1/D가 된다. 대상 제거가 끝날 때까지 관찰한다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "체력 100. 공격 가능한 적 한 개체만 공격원인 상태를 확보한다. 수류탄·배럴·다른 적의 피해는 없어야 한다.",
+      "step": "공격하지 않고 지정 적의 공격을 받는다.",
+      "expected_value": "해당 공격 후 같은 플레이어의 체력이 100 미만이 되고 체력 바가 줄어든다. 정확한 단발 피해량은 검사하지 않는다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "Normal 전투에 적이 남아 있고 제한 시간이 충분하다. 살아 있는 플레이어의 체력을 1로 준비한다.",
+      "step": "적의 실제 공격을 받아 체력이 0 이하가 되게 한다.",
+      "expected_value": "사망 처리 후 Game Over 화면으로 전환된다. 마지막 피해 시각부터 10초 관찰하되, 적의 후속 공격 필요 여부를 별도 기록한다.",
+      "kind": "FUNCTION",
+      "arrives_at": "game over"
+    },
+    {
+      "scene": "game over",
+      "precondition": "Normal 전투에서 실제 사망으로 Game Over에 도달했다. Replay 버튼을 식별한다.",
+      "step": "Replay 버튼을 한 번 클릭한다.",
+      "expected_value": "로더 후 Normal의 새 전투 Map_v2가 열린다. 플레이어가 살아 있고 타이머가 감소한다.",
+      "kind": "FUNCTION",
+      "arrives_at": "Map_v2"
+    },
+    {
+      "scene": "game",
+      "precondition": "게임을 새로 시작한 game 메인 메뉴에서 Play 버튼이 보인다.",
+      "step": "Play 버튼을 한 번 클릭한다.",
+      "expected_value": "Normal과 Zombie 모드를 선택할 수 있는 모드 선택 화면이 열린다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "Normal 전투에서 안전한 위치. 타이머가 감소 중이며 일시정지·슬로모션 상태가 아니다.",
+      "step": "ESC를 한 번 누른다.",
+      "expected_value": "일시정지 메뉴가 열리고, 열린 뒤 기록한 타이머 T0와 실제 5초 후 T1이 같다. 메뉴 표시와 시간 정지를 함께 확인한다.",
+      "kind": "FUNCTION"
+    },
+    {
+      "scene": "Map_v2",
+      "precondition": "Normal 전투에서 일시정지 메뉴가 열리고 타이머가 멈춘 상태를 준비한다.",
+      "step": "ESC를 한 번 누른다.",
+      "expected_value": "메뉴가 닫히고 전투가 재개된다. 재개 후 T0와 5초 뒤 T1을 비교해 T1<T0임을 확인한다.",
+      "kind": "FUNCTION"
+    }
+  ]
+}

@@ -1,0 +1,908 @@
+{
+  "ordered": {
+    "run": {
+      "id": "164",
+      "projectId": "54",
+      "name": "순서 있는 핵심 플레이",
+      "description": null,
+      "createdAt": "2026-11-13T06:01:25.277883Z",
+      "gameBuild": {
+        "gameBuildId": "50",
+        "version": "1.0",
+        "label": null,
+        "isEditor": false
+      },
+      "folderId": null,
+      "scenarioCount": 0,
+      "lastQaRun": null
+    },
+    "scenarios": {
+      "testRunId": "164",
+      "items": [
+        {
+          "position": 0,
+          "testScenarioId": "325"
+        },
+        {
+          "position": 1,
+          "testScenarioId": "326"
+        },
+        {
+          "position": 2,
+          "testScenarioId": "327"
+        },
+        {
+          "position": 3,
+          "testScenarioId": "328"
+        },
+        {
+          "position": 4,
+          "testScenarioId": "329"
+        }
+      ]
+    },
+    "details": [
+      {
+        "testScenarioId": 325,
+        "projectId": 54,
+        "payload": {
+          "title": "Normal 전투부터 사망과 재도전까지",
+          "description": "메인 메뉴부터 Normal 전투의 이동·사격·재장전·보급·회복·처치·일시정지·피격·사망·재도전까지 순서대로 검증한다. 준비 기능과 입력 경로는 구분하며 실제 동작은 미검증이다.",
+          "steps": [
+            {
+              "action": "Play 버튼을 한 번 클릭한다.",
+              "case_id": 3124,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "Normal 버튼을 한 번 클릭한다.",
+              "case_id": 3107,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "살아 있는 플레이어에게 무적을 켜고 안전한 평탄 지형으로 이동한다. 무적은 피격·사망 검증 전 반드시 끈다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "앞이 트인 곳에서 플레이어 위치와 고정 지형을 기록한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "W를 1초 누른 뒤 뗀다.",
+              "case_id": 3109,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "단발 무기와 잔탄 2발 이상을 확인하고 적·폭발물이 없는 벽을 조준한다. 발사 전 잔탄을 기록한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "마우스 왼쪽 버튼을 짧게 한 번 눌렀다 뗀다.",
+              "case_id": 3110,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "서로 다른 무기 두 개 이상 보유하고 전환 동작이 끝난 상태인지 확인한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "Q를 한 번 누른다.",
+              "case_id": 3111,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "화면이나 관찰에서 찾은 탄약 상자로 이동해 2m 이내에 선다. 탄창 용량을 읽고 잔탄을 0보다 크고 용량보다 작은 값으로 준비한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "R을 한 번 누른다. (N < C를)",
+              "case_id": 3112,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "같은 상자 2m 이내에서 잔탄 설정 준비 기능으로 현재 무기를 빈 탄창으로 만들고 용량을 기록한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "R을 한 번 누른다.",
+              "case_id": 3113,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "수류탄 수량이 8/8이며 이전 투척체가 없는지 확인한다. 적·폭발물이 없는 안전한 방향을 확보한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "G를 짧게 한 번 누른 뒤 투척체가 사라질 때까지 기다리고 안정된 보유 수량이 7/8인지 확인한다.",
+              "case_id": 3119,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "투척체가 모두 사라지고 수류탄 수가 8보다 작을 때 탄약 상자 2m 이내에 선다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "R을 한 번 누른다.",
+              "case_id": 3118,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "관찰에서 찾은 메디킷 2m 이내로 이동해 체력 설정 준비 기능으로 체력 50을 만든다. 다른 피해·회복원이 개입하지 않도록 한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "CapsLock을 한 번 누른다.",
+              "case_id": 3115,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "다른 공격원이나 폭발물이 개입하지 않는 적 한 개체를 찾아 사거리 안에서 조준하고 처치 카운터를 기록한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "실제 마우스 발사로 지정 적을 처치한다.",
+              "case_id": 3120,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "전투가 끝나지 않았고 정상 시간 배율로 타이머가 감소하는 안전한 위치에서 기다린다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "ESC를 한 번 누른다.",
+              "case_id": 3125,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "ESC를 한 번 누른다.",
+              "case_id": 3126,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "무적을 끄고 체력을 100으로 준비한다. 공격 가능한 적 한 개체만 공격원이 되는 위치로 이동한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "공격하지 않고 지정 적의 공격을 받는다.",
+              "case_id": 3121,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "무적이 꺼져 있고 적과 제한 시간이 남아 있는지 확인한다. 살아 있는 플레이어의 체력을 1로 준비한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "적의 실제 공격을 받아 체력이 0 이하가 되게 한다.",
+              "case_id": 3122,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "Replay 버튼을 한 번 클릭한다.",
+              "case_id": 3123,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            }
+          ],
+          "execution_mode": "ORDERED"
+        },
+        "reviewStatus": "DRAFT"
+      },
+      {
+        "testScenarioId": 326,
+        "projectId": 54,
+        "payload": {
+          "title": "Zombie 모드 진입",
+          "description": "새 메인 메뉴에서 모드 선택을 열고 Zombie 전투 진입을 검증한다.",
+          "steps": [
+            {
+              "action": "Play 버튼을 한 번 클릭한다.",
+              "case_id": 3124,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "Zombie 버튼을 한 번 클릭한다.",
+              "case_id": 3108,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            }
+          ],
+          "execution_mode": "ORDERED"
+        },
+        "reviewStatus": "DRAFT"
+      },
+      {
+        "testScenarioId": 327,
+        "projectId": 54,
+        "payload": {
+          "title": "상자에서 멀리 떨어진 재장전 제한",
+          "description": "Normal 전투 진입 후 탄약 상자 밖의 재장전 거부를 검증한다.",
+          "steps": [
+            {
+              "action": "Play 버튼을 한 번 클릭한다.",
+              "case_id": 3124,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "Normal 버튼을 한 번 클릭한다.",
+              "case_id": 3107,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "무적을 켠 뒤 모든 탄약 상자에서 3m 이상 떨어진 위치로 이동한다. 현재 탄창 용량을 읽고 잔탄을 0보다 크고 용량보다 작은 값으로 준비한다. 다른 재장전 조건과 입력 수신 증거를 확보한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "R을 한 번 누른다.",
+              "case_id": 3114,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            }
+          ],
+          "execution_mode": "ORDERED"
+        },
+        "reviewStatus": "DRAFT"
+      },
+      {
+        "testScenarioId": 328,
+        "projectId": 54,
+        "payload": {
+          "title": "최대 체력에서 메디킷 보존",
+          "description": "Normal 전투에서 체력이 가득 찬 플레이어의 메디킷 사용 제한을 검증한다.",
+          "steps": [
+            {
+              "action": "Play 버튼을 한 번 클릭한다.",
+              "case_id": 3124,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "Normal 버튼을 한 번 클릭한다.",
+              "case_id": 3107,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "무적을 켜고 체력을 100으로 준비한 뒤 지정한 메디킷 2m 이내에 선다. 대상 키트와 입력 수신 증거를 식별한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "CapsLock을 한 번 누른다.",
+              "case_id": 3116,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            }
+          ],
+          "execution_mode": "ORDERED"
+        },
+        "reviewStatus": "DRAFT"
+      },
+      {
+        "testScenarioId": 329,
+        "projectId": 54,
+        "payload": {
+          "title": "메디킷 원거리 사용 제한",
+          "description": "Normal 전투에서 메디킷 사용 거리 제한을 검증한다.",
+          "steps": [
+            {
+              "action": "Play 버튼을 한 번 클릭한다.",
+              "case_id": 3124,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "Normal 버튼을 한 번 클릭한다.",
+              "case_id": 3107,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "무적을 켜고 체력을 50으로 준비한 뒤 모든 메디킷에서 3m 이상 떨어진 곳으로 이동한다. 다른 회복원이 없는지 확인하고 입력 수신 증거를 확보한다.",
+              "case_id": null,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "CapsLock을 한 번 누른다.",
+              "case_id": 3117,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": "CASE",
+              "step_kind": "ACTION",
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            }
+          ],
+          "execution_mode": "ORDERED"
+        },
+        "reviewStatus": "DRAFT"
+      }
+    ],
+    "readbackVerified": true,
+    "uniqueCaseCount": 20
+  },
+  "free": {
+    "run": {
+      "id": "165",
+      "projectId": "54",
+      "name": "순서 없는 핵심 기능",
+      "description": null,
+      "createdAt": "2026-11-13T06:01:50.799253Z",
+      "gameBuild": {
+        "gameBuildId": "50",
+        "version": "1.0",
+        "label": null,
+        "isEditor": false
+      },
+      "folderId": null,
+      "scenarioCount": 0,
+      "lastQaRun": null
+    },
+    "scenarios": {
+      "testRunId": "165",
+      "items": [
+        {
+          "position": 0,
+          "testScenarioId": "330"
+        }
+      ]
+    },
+    "details": [
+      {
+        "testScenarioId": 330,
+        "projectId": 54,
+        "payload": {
+          "title": "핵심 기능 20개 순서 없이 검증",
+          "description": "모드 진입·이동·무기·탄약·회복·수류탄·전투 결과·일시정지와 예외 조건 20개를 각 사전조건에 맞춰 준비하고 에이전트가 순서를 선택해 검증한다.",
+          "steps": [
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. Normal 버튼을 한 번 클릭한다.",
+              "case_id": 3107,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. Zombie 버튼을 한 번 클릭한다.",
+              "case_id": 3108,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. W를 1초 누른 뒤 뗀다.",
+              "case_id": 3109,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. 마우스 왼쪽 버튼을 짧게 한 번 눌렀다 뗀다.",
+              "case_id": 3110,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. Q를 한 번 누른다.",
+              "case_id": 3111,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. R을 한 번 누른다.",
+              "case_id": 3112,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. R을 한 번 누른다.",
+              "case_id": 3113,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. R을 한 번 누른다.",
+              "case_id": 3114,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. CapsLock을 한 번 누른다.",
+              "case_id": 3115,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. CapsLock을 한 번 누른다.",
+              "case_id": 3116,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. CapsLock을 한 번 누른다.",
+              "case_id": 3117,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. R을 한 번 누른다.",
+              "case_id": 3118,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. G를 짧게 한 번 누른 뒤 뗀다.",
+              "case_id": 3119,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. 실제 마우스 발사로 지정 적을 처치한다.",
+              "case_id": 3120,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. 공격하지 않고 지정 적의 공격을 받는다.",
+              "case_id": 3121,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. 적의 실제 공격을 받아 체력이 0 이하가 되게 한다.",
+              "case_id": 3122,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. Replay 버튼을 한 번 클릭한다.",
+              "case_id": 3123,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. Play 버튼을 한 번 클릭한다.",
+              "case_id": 3124,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. ESC를 한 번 누른다.",
+              "case_id": 3125,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            },
+            {
+              "action": "해당 TC의 사전조건을 독립적으로 준비한다. ESC를 한 번 누른다.",
+              "case_id": 3126,
+              "hint": null,
+              "input": null,
+              "expected_passed": null,
+              "step_source": null,
+              "step_kind": null,
+              "step_source_capability_id": null,
+              "step_unknown_reason": null,
+              "recommendation_id": null
+            }
+          ],
+          "execution_mode": "FREE"
+        },
+        "reviewStatus": "DRAFT"
+      }
+    ],
+    "readbackVerified": true,
+    "uniqueCaseCount": 20
+  }
+}
