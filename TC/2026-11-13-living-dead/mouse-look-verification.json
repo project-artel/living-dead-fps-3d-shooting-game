@@ -1,0 +1,34 @@
+{
+  "sdkCommit": "0c3944c61cd728f89a88d463f468ab267f1381a8",
+  "unity": "2022.3.62f3",
+  "baseline": {
+    "activateAfterScene": {
+      "angleDegrees": 18.01186
+    },
+    "activateBeforeScene": {
+      "angleDegrees": 0,
+      "lookCallbacks": 0
+    }
+  },
+  "fixed": {
+    "activateBeforeScene": {
+      "angleDegrees": 18.01186,
+      "lookDelta": [
+        15,
+        10
+      ]
+    },
+    "tests": {
+      "total": 16,
+      "passed": 16,
+      "failed": 0
+    }
+  },
+  "scope": "InputSystemMouseBackend virtual-only InputUser pairing; socket disconnect is separate",
+  "build": {
+    "result": "Succeeded",
+    "executable": ".artel\\development-mouse-look\\LivingDead.exe",
+    "builtAtUtc": "2026-11-13T08:19:20.013587+00:00",
+    "sdkModuleSha256": "fc5603163283a8ae0f4dd3658cef66880cebbd13097eb63fae0f06e54ddca0cd"
+  }
+}
