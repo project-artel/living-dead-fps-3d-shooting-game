@@ -1,0 +1,150 @@
+{
+  "projectId": "17",
+  "apiBaseUrl": "https://stage-orch.artel.kr",
+  "folderId": "16",
+  "folderName": "2026-11-11 TC 20개",
+  "count": 20,
+  "verifiedAt": "2026-11-11T07:02:41.1071791Z",
+  "cases": [
+    {
+      "id": "1888",
+      "scene": "Map_v2 / zombie_level",
+      "step": "[TC-20] 전투 중 사망 후 Game Over 및 Replay 확인\n\n적의 실제 공격을 받아 체력이 0 이하가 되도록 하고 Game Over 화면을 기다린다. 결과 화면에서 Replay 버튼을 클릭한다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1887",
+      "scene": "Map_v2",
+      "step": "[TC-19] 적 공격으로 플레이어 체력 감소 확인\n\n공격하지 않고 지정 적의 공격을 받는다. 체력이 처음 감소한 뒤 공격 범위 밖으로 물러난다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1886",
+      "scene": "Map_v2",
+      "step": "[TC-18] 지정 적 처치 후 Kill 카운터 증가 확인\n\n실제 마우스 발사로 지정한 적을 처치하고 사망 처리와 제거가 끝날 때까지 관찰한다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1885",
+      "scene": "Map_v2",
+      "step": "[TC-17] 수류탄 한 번 투척 후 보유 수 감소 확인\n\nG를 짧게 한 번 누르고 뗀다. 투척체가 폭발해 제거된 뒤 수량을 확인한다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1884",
+      "scene": "Map_v2",
+      "step": "[TC-16] 수류탄 보충 후 최대 보유 수 표시 확인\n\nR을 한 번 누르고 수류탄 수량이 안정될 때까지 기다린다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1883",
+      "scene": "Map_v2",
+      "step": "[TC-15] 메디킷 거리 제한 확인\n\nCapsLock을 한 번 누른다. 체력과 대상 메디킷을 기록한 뒤, 선택한 메디킷 2m 이내로 이동해 같은 키를 누른다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1882",
+      "scene": "Map_v2",
+      "step": "[TC-14] 최대 체력에서 메디킷 보존 확인\n\nCapsLock을 누른 뒤 해당 메디킷이 남아 있는지 확인한다. 준비용 기능으로 체력을 50으로 낮춘 뒤 같은 메디킷에 CapsLock을 다시 누른다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1881",
+      "scene": "Map_v2",
+      "step": "[TC-13] 메디킷 소비 후 같은 위치에서 재사용 방지 확인\n\n같은 위치에서 준비용 기능으로 체력을 다시 50으로 낮춘다. CapsLock을 다시 누른다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1880",
+      "scene": "Map_v2",
+      "step": "[TC-12] 메디킷 사용 후 체력 회복 확인\n\nCapsLock을 한 번 누른다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1879",
+      "scene": "Map_v2",
+      "step": "[TC-11] 상자 밖 재장전 제한과 상자 안 재장전 비교\n\nR을 한 번 누르고 최대 10초 관찰한다. 같은 무기·같은 입력 방식으로 상자 2m 이내에 이동한 뒤 다시 R을 누른다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1878",
+      "scene": "Map_v2",
+      "step": "[TC-10] 빈 탄창 재장전 후 실제 발사 확인\n\nR을 누르고 재장전 완료를 기다린다. C발로 채워졌음을 기록하고 안전한 벽에 왼쪽 버튼으로 한 번 발사한다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1877",
+      "scene": "Map_v2",
+      "step": "[TC-09] 탄약 상자 근처에서 부분 탄창 재장전 확인\n\nR을 한 번 누르고 재장전 완료 후 잔탄이 안정될 때까지 최대 10초 기다린다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1876",
+      "scene": "Map_v2",
+      "step": "[TC-08] Q 무기 전환과 원래 무기 복귀 확인\n\nQ를 한 번 누르고 전환 완료를 기다린다. 변경된 무기를 기록하고 Q를 다시 눌러 완료를 기다린다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1875",
+      "scene": "Map_v2",
+      "step": "[TC-07] 단발 입력 후 탄창 잔탄 감소 확인\n\n마우스 왼쪽 버튼을 짧게 한 번 눌렀다 뗀다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1874",
+      "scene": "Map_v2",
+      "step": "[TC-06] 일시정지에서 메뉴 복귀 후 새 전투 진행 확인\n\nTab을 누른다. `game` 메뉴로 돌아온 뒤 Normal을 선택해 다시 전투에 진입한다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1873",
+      "scene": "Map_v2",
+      "step": "[TC-05] ESC 재개와 타이머 재시작 확인\n\nESC를 다시 한 번 누른다. 재개 직후 타이머 T0와 5초 후 T1을 기록한다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1872",
+      "scene": "Map_v2",
+      "step": "[TC-04] ESC 일시정지와 타이머 정지 확인\n\nESC를 한 번 누른다. 일시정지 메뉴가 열린 뒤 타이머 T0를 기록하고 실제 시간 5초 후 T1을 기록한다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1871",
+      "scene": "Map_v2",
+      "step": "[TC-03] 전투 타이머 감소 확인\n\n입력하지 않고 실제 시간 5초를 기다린다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1870",
+      "scene": "game",
+      "step": "[TC-02] Zombie 모드 진입 확인\n\nZombie 모드 선택 버튼을 클릭하고 로더 완료를 기다린다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    },
+    {
+      "id": "1869",
+      "scene": "game",
+      "step": "[TC-01] Normal 모드 진입 확인\n\nNormal 모드 선택 버튼을 클릭하고 로더 완료를 기다린다.",
+      "verificationStatus": "DRAFT",
+      "folderId": "16"
+    }
+  ]
+}

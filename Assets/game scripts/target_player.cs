@@ -30,6 +30,14 @@ public class target_player : MonoBehaviour
             shoot();
         }
     }
+#if ARTEL_GAME_FUNCTIONS
+    internal void ApplyQaShot()
+    {
+        range = gun_big.activeSelf ? 18f : 8f;
+        shoot();
+    }
+#endif
+
     private void shoot(){
         RaycastHit hit;
         if(Physics.Raycast(gun.transform.position,gun.transform.forward,out hit,range)){

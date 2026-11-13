@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 // A LED node emitting light based on start/stop signals from the previous node in the chain.
 public class LEDNode : MonoBehaviour
@@ -78,7 +78,7 @@ public class LEDNode : MonoBehaviour
         intensity = maxIntensity;
 
         // If point light is enabled, light it up.
-        if (isPointLightEn)
+        if (isPointLightEn && pointLight)
             pointLight.enabled = true;
 
         // If ON timer handn't been reached yet
@@ -99,7 +99,7 @@ public class LEDNode : MonoBehaviour
         intensity = minIntensity;
         
         // If there's a point light component enabled, disable the point light.
-        if (isPointLightEn)
+        if (isPointLightEn && pointLight)
             pointLight.enabled = false;
 
         if (slowProgress)

@@ -11,6 +11,10 @@ public class player_health : MonoBehaviour
     private float max_health=100f;
     public bool player_dead=false;
 
+#if ARTEL_GAME_FUNCTIONS && (UNITY_EDITOR || DEVELOPMENT_BUILD)
+    internal bool QaInvincible { get; set; }
+#endif
+
     // public float cooldown_time=0f;
     // public float cooling_rate=5f;
     // public float recharge_health_f=3f;
@@ -26,6 +30,10 @@ public class player_health : MonoBehaviour
     // public bool is_attack_player=false;
 
     public void TakeDamage(float amount){
+#if ARTEL_GAME_FUNCTIONS && (UNITY_EDITOR || DEVELOPMENT_BUILD)
+        if (QaInvincible)
+            return;
+#endif
         if(health>0){
          health-=amount;
         //  is_attack_player=true;

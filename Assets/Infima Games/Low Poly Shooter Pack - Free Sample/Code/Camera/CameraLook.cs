@@ -69,12 +69,32 @@ namespace InfimaGames.LowPolyShooterPack
             //Cache the camera's initial rotation.
             rotationCamera = transform.localRotation;
         }
+        #if ARTEL_GAME_FUNCTIONS
+        internal Vector3? QaAimPoint { get; set; }
+
+        private Vector2 GetQaLookDelta(Vector3 point)
+        {
+            var direction = point - transform.position;
+            var yaw = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            var pitch = -Mathf.Atan2(direction.y, new Vector2(direction.x, direction.z).magnitude) * Mathf.Rad2Deg;
+            var currentYaw = smooth ? rotationCharacter.eulerAngles.y : playerCharacterRigidbody.rotation.eulerAngles.y;
+            var currentPitch = smooth ? rotationCamera.eulerAngles.x : transform.localEulerAngles.x;
+            pitch = Mathf.Clamp(pitch, yClamp.x, yClamp.y);
+            return Vector2.ClampMagnitude(new Vector2(Mathf.DeltaAngle(currentYaw, yaw),
+                -Mathf.DeltaAngle(currentPitch, pitch)), 360f * Time.deltaTime);
+        }
+#endif
+
         private void LateUpdate()
         {
             //Frame Input. The Input to add this frame!
             Vector2 frameInput = playerCharacter.IsCursorLocked() ? playerCharacter.GetInputLook() : default;
             //Sensitivity.
             frameInput *= sensitivity;
+#if ARTEL_GAME_FUNCTIONS
+            if (QaAimPoint.HasValue && frameInput == Vector2.zero && playerCharacter.IsCursorLocked())
+                frameInput = GetQaLookDelta(QaAimPoint.Value);
+#endif
 
             //Yaw.
             Quaternion rotationYaw = Quaternion.Euler(0.0f, frameInput.x, 0.0f);

@@ -154,9 +154,6 @@ namespace InfimaGames.LowPolyShooterPack
 		private bool cursorLocked;
 		public GameObject checking;
 		public pause_menu_script pms;
-		private Transform player;
-		private GameObject[] bullet_kit;
-		private bool reloading_range=false;
 
 		#endregion
 
@@ -271,7 +268,14 @@ namespace InfimaGames.LowPolyShooterPack
 		
 		public override bool IsTutorialTextVisible() => tutorialTextVisible;
 		
+		#if ARTEL_GAME_FUNCTIONS
+		internal Vector2 QaMovement { get; set; }
+
+		public override Vector2 GetInputMovement() =>
+			QaControlsAvailable && axisMovement == Vector2.zero ? QaMovement : axisMovement;
+#else
 		public override Vector2 GetInputMovement() => axisMovement;
+#endif
 		public override Vector2 GetInputLook() => axisLook;
 
 		#endregion
@@ -309,6 +313,31 @@ namespace InfimaGames.LowPolyShooterPack
 			characterAnimator.CrossFade("Inspect", 0.0f, layerActions, 0);
 		}
 		
+#if ARTEL_GAME_FUNCTIONS
+		internal WeaponBehaviour QaEquippedWeapon => equippedWeapon;
+		internal bool QaControlsAvailable => cursorLocked && pms != null && !pms.gamepaused;
+		internal bool QaWeaponBusy => holstered || holstering || reloading || inspecting;
+
+		internal bool TryQaFire()
+		{
+			if (!QaControlsAvailable || !CanPlayAnimationFire() || !equippedWeapon.HasAmmunition()
+				|| Time.time - lastShotTime <= 60.0f / equippedWeapon.GetRateOfFire())
+				return false;
+
+			int roundsBefore = equippedWeapon.GetAmmunitionCurrent();
+			Fire();
+			return equippedWeapon.GetAmmunitionCurrent() < roundsBefore;
+		}
+
+		internal bool TryQaReload()
+		{
+			if (!QaControlsAvailable || !CanPlayAnimationReload() || holstered || holstering)
+				return false;
+
+			return TryStartReload();
+		}
+#endif
+
 		/// <summary>
 		/// Fires the character's weapon.
 		/// </summary>
@@ -324,32 +353,25 @@ namespace InfimaGames.LowPolyShooterPack
 			characterAnimator.CrossFade(stateName, 0.05f, layerOverlay, 0);
 		}
 
-		private void PlayReloadAnimation()
+		private bool TryStartReload()
 		{
-			#region Animation
-			player= GameObject.FindGameObjectWithTag("Player").transform;
-			bullet_kit= GameObject.FindGameObjectsWithTag("bullet_kit");
-			foreach(var kit in bullet_kit){
-				float dis = Vector3.Distance(player.position,kit.transform.position);
-				if(dis<2.5f){
-					reloading_range=true;
-				}
-			}
-				if(reloading_range){
-					reloading_range=false;
-			//Get the name of the animation state to play, which depends on weapon settings, and ammunition!
-			string stateName = equippedWeapon.HasAmmunition() ? "Reload" : "Reload Empty";
-			//Play the animation state!
-			characterAnimator.Play(stateName, layerActions, 0.0f);
+			var player = GameObject.FindGameObjectWithTag("Player");
+			if (!player)
+				return false;
 
-			//Set.
-			reloading = true;
+			foreach (var kit in GameObject.FindGameObjectsWithTag("bullet_kit"))
+			{
+				if (Vector3.Distance(player.transform.position, kit.transform.position) >= 2.5f)
+					continue;
+
+				string stateName = equippedWeapon.HasAmmunition() ? "Reload" : "Reload Empty";
+				characterAnimator.Play(stateName, layerActions, 0.0f);
+				reloading = true;
+				equippedWeapon.Reload();
+				return true;
 			}
 
-			#endregion
-
-			//Reload.
-			equippedWeapon.Reload();
+			return false;
 		}
 
 		/// <summary>
@@ -654,7 +676,7 @@ namespace InfimaGames.LowPolyShooterPack
 				//Performed.
 				case {phase: InputActionPhase.Performed}:
 					//Play Animation.
-					PlayReloadAnimation();
+					TryStartReload();
 					break;
 			}
 		}
