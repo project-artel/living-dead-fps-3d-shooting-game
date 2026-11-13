@@ -29,8 +29,8 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.services.analytics": "1.0.4",
-        "com.unity.ugui": "1.0.0"
+        "com.unity.ugui": "1.0.0",
+        "com.unity.services.analytics": "1.0.4"
       },
       "url": "https://packages.unity.com"
     },
@@ -166,8 +166,8 @@
       "source": "registry",
       "dependencies": {
         "com.unity.ugui": "1.0.0",
-        "com.unity.services.core": "1.12.4",
-        "com.unity.modules.jsonserialize": "1.0.0"
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.services.core": "1.12.4"
       },
       "url": "https://packages.unity.com"
     },
@@ -233,7 +233,7 @@
       }
     },
     "kr.artel.sdk": {
-      "version": "https://github.com/project-artel/artel-sdk.git?path=/Packages/kr.artel.sdk#develop",
+      "version": "https://github.com/project-artel/artel-sdk.git?path=/Packages/kr.artel.sdk#465e18c88512f858db83741fb9b96d64a658b2be",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -241,9 +241,10 @@
         "com.unity.nuget.newtonsoft-json": "3.2.1",
         "com.unity.textmeshpro": "3.0.6",
         "com.unity.ugui": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.unitywebrequest": "1.0.0"
       },
-      "hash": "bf69707ada3295ee3e5011ce59b29186aa68b89f"
+      "hash": "465e18c88512f858db83741fb9b96d64a658b2be"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

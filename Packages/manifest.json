@@ -17,7 +17,7 @@
     "com.unity.textmeshpro": "3.0.7",
     "com.unity.timeline": "1.7.7",
     "com.unity.ugui": "1.0.0",
-    "kr.artel.sdk": "https://github.com/project-artel/artel-sdk.git?path=/Packages/kr.artel.sdk#develop",
+    "kr.artel.sdk": "https://github.com/project-artel/artel-sdk.git?path=/Packages/kr.artel.sdk#465e18c88512f858db83741fb9b96d64a658b2be",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
