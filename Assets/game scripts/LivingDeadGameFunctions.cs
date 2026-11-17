@@ -13,6 +13,14 @@ internal static class LivingDeadGameFunctions
         Zombie
     }
 
+    [ArtelOverrideCheat("reset_game", "전투를 끝내고 일반 모드와 좀비 모드를 선택하는 메인 메뉴로 돌아갑니다.")]
+    private static IEnumerator ResetGame()
+    {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+        yield return SceneManager.LoadSceneAsync("game");
+    }
+
     [ArtelCheat("메인 메뉴에서 선택한 모드의 로더를 실행하고 전투 씬이 열릴 때까지 기다립니다.",
         when: nameof(CanStartMode))]
     private static IEnumerator StartMode(Mode mode)
