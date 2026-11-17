@@ -13,6 +13,11 @@ public class player_health : MonoBehaviour
 
 #if ARTEL_GAME_FUNCTIONS && (UNITY_EDITOR || DEVELOPMENT_BUILD)
     internal bool QaInvincible { get; set; }
+    private int qaMedkitInputCount;
+    private string qaLastMedkitInput = "null";
+
+    internal string ReadQaMedkitState() =>
+        System.FormattableString.Invariant($"{{\"health\":{health:R},\"input_count\":{qaMedkitInputCount},\"last_input\":{qaLastMedkitInput}}}");
 #endif
 
     // public float cooldown_time=0f;
@@ -78,18 +83,51 @@ void Update () {
     //     cooldown_time=Time.time+cooling_rate;
     // }
 
-	foreach(var kit in medikits){
-	float dis = Vector3.Distance(player.position,kit.transform.position);
-	if(dis<2.5f && health!=max_health && Input.GetKeyDown(KeyCode.CapsLock)){
-    used_kit=kit;
-	recharge_health=true;
-	}
+    bool medkitKeyDown = Input.GetKeyDown(KeyCode.CapsLock);
+#if ARTEL_GAME_FUNCTIONS && (UNITY_EDITOR || DEVELOPMENT_BUILD)
+    float healthBeforeInput = health;
+    float nearestMedkitDistance = float.PositiveInfinity;
+    int? consumedMedkitId = null;
+#endif
+
+    foreach (var kit in medikits)
+    {
+        float distance = Vector3.Distance(player.position, kit.transform.position);
+#if ARTEL_GAME_FUNCTIONS && (UNITY_EDITOR || DEVELOPMENT_BUILD)
+        if (medkitKeyDown)
+            nearestMedkitDistance = Mathf.Min(nearestMedkitDistance, distance);
+#endif
+        if (distance < 2.5f && health != max_health && medkitKeyDown)
+        {
+            used_kit = kit;
+            recharge_health = true;
+        }
     }
-    if(recharge_health){
-        health=100f;
+
+    if (recharge_health)
+    {
+        health = 100f;
+#if ARTEL_GAME_FUNCTIONS && (UNITY_EDITOR || DEVELOPMENT_BUILD)
+        consumedMedkitId = used_kit.GetInstanceID();
+#endif
         Destroy(used_kit);
-        recharge_health=false;
+        recharge_health = false;
     }
+
+#if ARTEL_GAME_FUNCTIONS && (UNITY_EDITOR || DEVELOPMENT_BUILD)
+    if (medkitKeyDown)
+    {
+        qaMedkitInputCount++;
+        string distance = medikits.Length == 0
+            ? "null"
+            : System.FormattableString.Invariant($"{nearestMedkitDistance:R}");
+        string consumedId = consumedMedkitId.HasValue
+            ? System.FormattableString.Invariant($"{consumedMedkitId.Value}")
+            : "null";
+        qaLastMedkitInput = System.FormattableString.Invariant(
+            $"{{\"frame\":{Time.frameCount},\"medkit_count\":{medikits.Length},\"nearest_distance_m\":{distance},\"health_before\":{healthBeforeInput:R},\"health_after\":{health:R},\"consumed_medkit_id\":{consumedId}}}");
+    }
+#endif
 
     // if (health<=0 && isPlayingAnim==false) {
     //     audioSource.Pause();
