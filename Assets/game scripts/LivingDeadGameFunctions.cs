@@ -66,6 +66,13 @@ internal static class LivingDeadGameFunctions
         health.QaInvincible = enabled;
         return $"invincible={health.QaInvincible}, health={health.health}";
     }
+
+    [ArtelGameFunction("현재 체력과 CapsLock 수신 횟수, 마지막 입력의 프레임, 검사한 메디킷 수와 최근접 거리(m), 입력 전후 체력, 소비한 메디킷 ID를 조회합니다. 입력이나 메디킷이 없으면 해당 값은 null입니다.",
+        ArtelGameFunctionMode.ReadOnly, name: "get_medkit_state", when: nameof(CanUseBattle))]
+    private static string GetMedkitState()
+    {
+        return Object.FindAnyObjectByType<player_health>().ReadQaMedkitState();
+    }
 #endif
 
     [ArtelBehavior("현재 조준 방향으로 발사합니다. 탄창이 비면 탄약 상자 근처에서 재장전합니다.",
