@@ -1950,7 +1950,6 @@ GameObject:
   - component: {fileID: 1936970320000139635}
   - component: {fileID: 4671882172523609887}
   - component: {fileID: 6577901871626037797}
-  - component: {fileID: 5151834784867792519}
   m_Layer: 5
   m_Name: Timer
   m_TagString: timer
@@ -2074,25 +2073,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5151834784867792519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5776181163354074204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e111fe125904c3c40a7343f9b9c7eb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies: []
-  initial_enemies: []
-  kill: {fileID: 5160350732744213933}
-  grenade: {fileID: 0}
-  fpsk: {fileID: 11400000, guid: 7a8372fb9317dde498d679b7870806e5, type: 2}
-  timer: {fileID: 6577901871626037797}
-  timevalue: 1200
 --- !u!1 &5983749243552376780
 GameObject:
   m_ObjectHideFlags: 0
